@@ -1,0 +1,20 @@
+Das Projekt koennte etwa ff. Verzeichnisse haben:
+  /media/jufo/serienmails/db-transaktionen/
+  /media/jufo/serienmails/web-gui/
+  /media/jufo/serienmails/installation/
+  /var/tmp/serienmails/inhalte/
+
+Alles aus /media/jufo/serienmails/ nach GIT hochladen (nicht nur web-gui)
+
+zusaetzliche Tabelle fuer Admins?
+  nur Admins duerfen die WebGUI bedienen
+
+csv-Import fuer User
+
+fuer Events doch eine Nummer (integer, autoincrement) als Verzeichnisname unter .../serienmails/inhalte/
+  /var/tmp/serienmails/inhalte/14/einladungstext
+  /var/tmp/serienmails/inhalte/14/Anhang.jpg
+
+Ich habe LaTeX installiert:
+  apt-get -y install  texlive texlive-lang-german texlive-latex-extra texlive-pictures texlive-science texlive-fonts-extra
+verbraucht 30 Min und 2.5GB (4.2GB muessen frei sein)

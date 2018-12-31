@@ -1,0 +1,115 @@
+cd /opt
+sudo git clone https://github.com/certbot/certbot.git
+sudo /opt/certbot/certbot-auto certonly --manual --preferred-challenges=dns --email lucas.handy.1234@gmail.com --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.lucalutz.org -d lucalutz.org
+
+#Ausgabe:
+#Saving debug log to /var/log/letsencrypt/letsencrypt.log
+#Plugins selected: Authenticator manual, Installer None
+#Obtaining a new certificate
+#Performing the following challenges:
+#dns-01 challenge for lucalutz.org
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#NOTE: The IP of this machine will be publicly logged as having requested this
+#certificate. If you're running certbot in manual mode on a machine that is not
+#your server, please ensure you're okay with that.
+#
+#Are you OK with your IP being logged?
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#(Y)es/(N)o: Y
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Please deploy a DNS TXT record under the name
+#_acme-challenge.lucalutz.org with the following value:
+#
+#5eqAmHgDX75wLuelXjx22-2sJ1jaYNnnVGicJamroB0
+#
+#Before continuing, verify the record is deployed.
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Press Enter to Continue
+#Waiting for verification...
+#Cleaning up challenges
+#
+#IMPORTANT NOTES:
+#[0m - Congratulations! Your certificate and chain have been saved at:
+#   /etc/letsencrypt/live/lucalutz.org/fullchain.pem
+#   Your key file has been saved at:
+#   /etc/letsencrypt/live/lucalutz.org/privkey.pem
+#   Your cert will expire on 2019-03-30. To obtain a new or tweaked
+#   version of this certificate in the future, simply run certbot-auto
+#   again. To non-interactively renew *all* of your certificates, run
+#   "certbot-auto renew"
+# - If you like Certbot, please consider supporting our work by:
+#
+#   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+#   Donating to EFF:                    https://eff.org/donate-le
+#
+permitted by DNS standards.)
+
+sudo ./certbot-auto certonly --manual --preferred-challenges=dns --email lucas.handy.1234@gmail.com --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.lucalutz.org -d lucalutz.org 
+
+Ausgabe:
+#Saving debug log to /var/log/letsencrypt/letsencrypt.log
+#Plugins selected: Authenticator manual, Installer None
+#Obtaining a new certificate
+#Performing the following challenges:
+#dns-01 challenge for lucalutz.org
+#dns-01 challenge for lucalutz.org
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#NOTE: The IP of this machine will be publicly logged as having requested this
+#certificate. If you're running certbot in manual mode on a machine that is not
+#your server, please ensure you're okay with that.
+#
+#Are you OK with your IP being logged?
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+echo "bejahen: (Y)es/(N)o: Y"
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Please deploy a DNS TXT record under the name
+#_acme-challenge.lucalutz.org with the following value:
+#
+#5eqAmHgDX75wLuelXjx22-2sJ1jaYNnnVGicJamroB0
+#
+#Before continuing, verify the record is deployed.
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Press Enter to Continue
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Please deploy a DNS TXT record under the name
+#_acme-challenge.lucalutz.org with the following value:
+#
+echo 'Den dns record _acme-challenge.lucalutz.org auf "6-_rTYOD-FYvrxYikeL7iK5Vdj-AEASGIJvrTuPb6TU" in diesem Fall aendern'
+echo 'enter druecken'
+#
+#Before continuing, verify the record is deployed.
+#(This must be set up in addition to the previous challenges; do not remove,
+#replace, or undo the previous challenge tasks yet. Note that you might be
+#asked to create multiple distinct TXT records with the same name. This is
+#permitted by DNS standards.)
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Press Enter to Continue
+#Waiting for verification...
+#Cleaning up challenges
+#
+#IMPORTANT NOTES:
+# - Congratulations! Your certificate and chain have been saved at:
+#   /etc/letsencrypt/live/lucalutz.org/fullchain.pem
+#   Your key file has been saved at:
+#   /etc/letsencrypt/live/lucalutz.org/privkey.pem
+#   Your cert will expire on 2019-03-30. To obtain a new or tweaked
+#   version of this certificate in the future, simply run certbot-auto
+#   again. To non-interactively renew *all* of your certificates, run
+#   "certbot-auto renew"
+# - If you like Certbot, please consider supporting our work by:
+#
+#   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+#   Donating to EFF:                    https://eff.org/donate-le
+#
+sudo a2enmod ssl
+echo "im Vim folgendes aendern"
+echo "SSLEngine on"
+echo "SSLCertificateFile /etc/letsencrypt/live/lucalutz.org-0001/cert.pem"
+echo "SSLCertificateKeyFile /etc/letsencrypt/live/lucalutz.org-0001/privkey.pem"
+sudo service apache2 restart
