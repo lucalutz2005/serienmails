@@ -13,7 +13,8 @@ sudo -i
   echo 'Include /etc/phpmyadmin/apache.conf' >> sudo /etc/apache2/apache2.conf
 
 #Datenbanken und 'serienmails' benutzer anlegen
-sudo mysql < ./counfigure_mysql.sql
+#sudo mysql < ./counfigure_mysql.sql
+sudo ./Erstelle_Datenbank.sh
 
 #services reloaden
 sudo service apache2 restart

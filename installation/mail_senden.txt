@@ -1,0 +1,2 @@
+#sql nach liste der user fragen:
+for L in $(echo "use serienmails; SELECT email FROM users" |  mysql -h localhost -u serienmails --password="garnix" | grep -v "email"); do echo "./senden" $L; done
