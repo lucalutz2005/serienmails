@@ -1,6 +1,10 @@
 <html>
 <head>
 <title> Event l&ouml;schen </title>
+<link rel="stylesheet" type="text/css" href="style/inputs.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Jetz wird PHP gestartet -->
@@ -76,17 +80,41 @@ if (isset($_GET['signup'])) {
 
 
 <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
-  <fieldset>
+<!--  <fieldset>
     <h2>Event l&ouml;schen</h2>
       <div class="form-group">
-        <input type="text" name="name" id="name" placeholder="Voller Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
+        <input type="text" autocomplete="off" name="name" id="name" placeholder="Voller Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
         <span class="text-danger"><?php if (isset($uname_error)) echo $uname_error; ?></span>
       </div>
       
       <input type="submit" name="signup" value="l&ouml;schen" class="btn btn-primary" />
   </fieldset>
+</form> -->
+
+
+
+
+
+
+
+
+
+
+
+<div>
+  <label>
+    <p class="label-txt">Name des Events</p>
+    <input type="text" autocomplete="off" name="name" id="name" required value="<?php if($error) echo $name; ?>" class="input">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+<br />
+<br />
+  <button type="submit" name="signup">L&ouml;schen</button>
+    <span class="text-danger"><?php if (isset($uname_error)) echo $uname_error; ?></span>
+</div>
 </form>
 
 </body>
 </html>
-

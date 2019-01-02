@@ -2,10 +2,17 @@
 <head>
 <title> Anhang upladen </title>
 <link rel="stylesheet" type="text/css" href="style/anhang/style-form.css">
-<link rel="stylesheet" type="text/css" href="style/anhang/style-text.css">
+<!--<link rel="stylesheet" type="text/css" href="style/anhang/style-text.css"> -->
+<link rel="stylesheet" type="text/css" href="style/inputs.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
+<form role="form"  action="anhang.php"  method="post" name="signupform" enctype="multipart/form-data">
+<!--<div> -->
+<h2>Anhang Hinzuf&uuml;gen</h2>
 <?php
 include_once("connect.php");
 session_start();
@@ -26,50 +33,47 @@ if (isset($_POST['bestaetigen'])) {
 	//echo $sql;
 	if(mysqli_query($conn, $sql))
         {
-		$success_message = "Es hat funktioniert der Anhang wurde hochgeladen und verlinkt!";
+		$success_message = '<a style="color: red">' . 'Es hat funktioniert der Anhang wurde hochgeladen und verlinkt!' . '</a> <br />';
 		echo $success_message;
         }
 
 	}
+
+        $sql = "SELECT * FROM `events`";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+	  echo '<select name="name">';
+	  echo '<option value="">Bitte ausw&auml;hlen</option>';
+          while($row = $result->fetch_assoc()) {
+	    echo '<option value="' . $row["name"] . '">' . $row["name"] . '</option>';
+	    }
+	    # echo '/select>';
+	    # echo "<br />";
+	 } else {
+         echo "Es sind leider Keine Events Verfuegbar";
+	 }
+
+
+
+ 
 ?>
-  <form role="form"  action="anhang.php"  method="post" name="signupform" enctype="multipart/form-data">
-  <h2>Anhang Hinzuf&uuml;gen</h2>
-
-    <div class="group">  
-      <input type="text" name="name" required value="<?php //if($error) echo $name; ?>" class="form-control" /> 
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label>Name des Events</label>
-    </div>
-
-	<span class="input">
+</select>
 <br />
-<span></span>	
-</span>
-  <span class="border"></span>
-    <!--    <label for="images">Images <span></span></label>
-    <input type="file" name="datei" id="datei"  required="required" multiple="multiple"/>
+<br />
+  <!--<span class="border"></span> -->
+    <!--    <label for="images"> </span></label> -->
+    <div class="file-area">
+	<input class="file-area" type="file" name="datei" id="datei"  required="required" multiple="multiple"/>
     <div class="file-dummy">
       <div class="success">Supper, deine Datei wurde ausgew&auml;hlt</div>
       <div class="default">Zum ausw&auml;hlen klicken oder Dateien fallen lassen</div>
     </div>
-  </div>-->
-  <div class="form-group file-area">
-        <label for="images"> <!--Anhang --> <span></span></label>
-    <input type="file" name="datei" id="datei" required="required" multiple="multiple"/>
-    <div class="file-dummy">
-      <div class="success">Supper, deine Datei wurde ausgew&auml;hlt</div>
-      <div class="default">Zum ausw&auml;hlen klicken oder Datei fallen lassen</div>
-    </div>
-  </div>
-
-
-<link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700' rel='stylesheet' type='text/css'>
-
-    <!--<input type="file" name="datei" id="datei"/>
-    <label for="datei" class="btn-2">Hochladen</label>--> <br />
-
-    <input type="submit" name="bestaetigen" value="Hinzufuegen" class="btn btn-primary" />
-  </form>
+</div>
+<br />
+<br />
+  <button type="submit" name="bestaetigen" value="Hinzufuegen">Anlegen</button>
+</form>
 </body>
 </html>
+

@@ -30,7 +30,30 @@ echo '  `events_name`char(59) NOT NULL PRIMARY KEY,'
 echo '  `datum`      tinytext NOT NULL,' 
 echo '  `IP`         tinytext NOT NULL,'
 echo '  `Users_Name` tinytext NOT NULL'
-echo ') ENGINE=InnoDB DEFAULT CHARSET=latin1';
+echo ') ENGINE=InnoDB DEFAULT CHARSET=latin1'
+
+#echo 'CREATE TABLE `einladungen` ('
+#echo '`user_email` VARCHAR(100) NOT NULL,'
+#echo '`event_name` VARCHAR(100) NOT NULL,'
+#echo '`antwort` INT(100) NULL DEFAULT NULL,'
+#echo '`IP` VARCHAR(100) NOT NULL ,'
+#echo '`Uhrzeit` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL,'
+#echo '`hash` VARCHAR(100) NOT NULL'
+#echo ') ENGINE = InnoDB;';
+#
+#
+#echo 'ALTER TABLE `einladungen` CHANGE `IP` `IP` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;'
+#echo 'ALTER TABLE `einladungen` ADD `user_name` VARCHAR(100) NOT NULL AFTER `user_email`;'
+
+echo 'CREATE TABLE `einladungen` ('
+echo '  `user_email` varchar(100) NOT     NULL,'
+echo '  `user_name`  varchar(100) NOT     NULL,'
+echo '  `event_name` varchar(100) NOT     NULL,'
+echo '  `antwort`        int(100) DEFAULT NULL,'
+echo '  `IP`         varchar(100) DEFAULT NULL,'
+echo '  `Uhrzeit`        datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,'
+echo '  `hash`       varchar(100) NOT     NULL'
+echo ') ENGINE=InnoDB DEFAULT CHARSET=latin1;'
 
 ) | mysql -h localhost -u serienmails --password="garnix"
 #--password="Luca.1111" 

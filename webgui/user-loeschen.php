@@ -1,6 +1,10 @@
 <html>
 <head>
+<link rel="stylesheet" href="style/inputs.css"> 
 <title> User l&ouml;schen </title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Jetz wird PHP gestartet -->
@@ -38,15 +42,22 @@ if (isset($_GET['signup'])) {
 
 
 <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
-  <fieldset>
-    <h2>User l&ouml;schen</h2>
-      <div class="form-group">
-        <input type="text" name="name" id="name" placeholder="Voller Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
+        <div class="form-group">
+	  <h1>User l&ouml;schen</h1>
+	</div>
+
+	<label>
+	<label class="label-txt" style="top: -4.3em; right: 12.8em" for="name1234">Name</label>
+        <div class="form-group">
+        <input type="text" name="name" id="name" required value="<?php if($error) echo $name; ?>" class="input"/>
         <span class="text-danger"><?php if (isset($uname_error)) echo $uname_error; ?></span>
-      </div>
-      
-      <input type="submit" name="signup" value="Endg&uuml;ltig l&ouml;schen" class="btn btn-primary" />
-  </fieldset>
+	<div class="line-box">
+       	<div class="line"></div>
+    	</div>      
+	</div>
+	</label>
+
+        <button type="submit" name="signup">Endg&uuml;ltig l&ouml;schen</button>
 </form>
 
 </body>

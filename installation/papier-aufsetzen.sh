@@ -73,3 +73,8 @@ echo '0 0 * * * /home/pi/Skripte/night.sh /home/* >/dev/null 2>&1'       > /tmp/
 echo '0 * * * * /home/pi/Skripte/hour.sh /home/luca/*  >/dev/null 2>&1' >> /tmp/cron-root
 crontab -u root /tmp/cron-root
 rm              /tmp/cron-root
+sudo mkdir /var/www/html/langfassung_out
+#Ich habe LaTeX installiert:
+apt-get -y install  texlive texlive-lang-german texlive-latex-extra texlive-pictures texlive-science texlive-fonts-extra
+# verbraucht 30 Min und 2.5GB (4.2GB muessen frei sein)
+
