@@ -1,0 +1,10 @@
+Alles aus /media/jufo/serienmails/ nach GIT hochladen (nicht nur web-gui)
+
+zusaetzliche Tabelle fuer Admins
+  nur Admins duerfen die WebGUI bedienen
+
+csv-Import fuer User
+
+fuer Events doch eine Nummer (integer, autoincrement) als Verzeichnisname unter .../serienmails/inhalte/
+  /var/tmp/serienmails/inhalte/14/einladungstext
+  /var/tmp/serienmails/inhalte/14/Anhang.jpg

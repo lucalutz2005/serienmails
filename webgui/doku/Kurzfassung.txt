@@ -1,0 +1,9 @@
+Der virtuelle Kuehlturm
+
+In meinem Projekt dem Virtuellen Kuehlturm geht es darum das Leben von Solarkollektoren zu verlaengern da diese erst einmal umweltbelastend 
+hergestellt und Zusaetzlich auch noch viel Geld kosten das dadurch eingespart werden kann. Bei einer normalen Solaranlage 
+wird im Sommer der Solarkollektor von der Sonne erhitzt der gibt diese Hitze wiederum an eine Solarfluessichkeit ab die die Waerme an das Wasser im Waerespeicher 
+transportiert. Dieses Wasser wird ab diesem Zeitpunkt immer waermer. Wenn es allerdings die Maximaltemperatur von c.a. 70 grad c erreicht hat 
+wird dieser Kreislauf angehalten und die Solarfluessichkeit bleibt oben im Kollektor und verdampft. Der Solar heitzt sich darum immer mehr auf. Ab hier kommt mein System ins 
+Spiel das dann die Solarfluessichkeit durch den eigendlichen Heizkessel befoerdert und es dann dort mit dem sowiso vorhandenen Ventilator der zur 
+Feuerbelueftung dient abgekuehlt wird. 
