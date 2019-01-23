@@ -1,3 +1,7 @@
+<?php
+include 'login_test.php';  // Funktioniert
+?>
+
 <html>
 <head>
 <title> Anhang upladen </title>
@@ -53,8 +57,6 @@ if (isset($_POST['bestaetigen'])) {
 	 } else {
          echo "Es sind leider Keine Events Verfuegbar";
 	 }
-
-
 
  
 ?>

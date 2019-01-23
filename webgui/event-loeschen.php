@@ -1,3 +1,7 @@
+<?php
+include 'login_test.php';  // Funktioniert
+?>
+
 <html>
 <head>
 <title> Event l&ouml;schen </title>
@@ -20,7 +24,7 @@ if(is_dir($dirname)) $dir_handle = opendir($dirname);
 //Falls Verzeichnis nicht geoeffnet werden kann, mit Fehlermeldung terminieren
 if(!$dir_handle)
 { 
-  echo "Verzeichnis nicht gfunden! ({$dirname})";
+  #echo "Verzeichnis nicht gfunden! ({$dirname})";
   return  false;
 }
 while($file=readdir($dir_handle))
@@ -45,31 +49,43 @@ rmdir($dirname);
 return  true;
 }
 
-
 session_start();
 
 $error = false;
-if (isset($_GET['signup'])) {
+if (isset($_GET['name'])) {
         $name = mysqli_real_escape_string ($conn, $_GET['name']);
 
-	if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
-                $error = true;
-                $uname_error = "Der Name darf nur Bustaben und Leertasten enthalten";
-        }
         if (!$error) {
 
 	$name_neu = '"' . $name . '"';
 	//echo $name_neu;
+	//$meldung =  shell_exec('/home/luca/serienmails/webgui/adresse.sh "'.$name.'"');
+        //echo $meldung;
+	#makeDownload($name.".zip", "/home/luca/serienmails/webgui/smt/", "application/zip");
+        #readfile("/home/luca/serienmails/webgui/smt/".$name.".zip");
 	$pfad_rm = "upload/" . $name;
 	delete_directory($pfad_rm);	
+	$pfad_rm = "adressen/" . $name;
+	delete_directory($pfad_rm);	
 	$sql = "DELETE FROM events WHERE name=" . $name_neu . ";";
+	$pfad_rm = "inhalte/" . $name;
+	unlink($pfad_rm);	
 	//echo $sql;
 	if(mysqli_query($conn, $sql)) { 
 	  $success_message = "Es hat funktioniert!";
-	  echo $success_message;
+	  #echo $success_message;
 	}
 	else {
           $error_message = "Es ist ein Fehler aufgtreten!";
+	  #echo $error_message;
+	}
+	$sql = "DELETE FROM einladungen WHERE event_name=" . $name_neu . ";";
+	if(mysqli_query($conn, $sql)) { 
+	  #$success_message = "Es hat funktioniert!";
+	  //echo $success_message;
+	}
+	else {
+          #$error_message = "Es ist ein Fehler aufgtreten!";
 	  echo $error_message;
 	}
 	
@@ -80,35 +96,31 @@ if (isset($_GET['signup'])) {
 
 
 <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
-<!--  <fieldset>
-    <h2>Event l&ouml;schen</h2>
-      <div class="form-group">
-        <input type="text" autocomplete="off" name="name" id="name" placeholder="Voller Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
-        <span class="text-danger"><?php if (isset($uname_error)) echo $uname_error; ?></span>
-      </div>
-      
-      <input type="submit" name="signup" value="l&ouml;schen" class="btn btn-primary" />
-  </fieldset>
-</form> -->
-
-
-
-
-
-
-
-
-
-
-
+ <span ><?php if (isset($success_message)) echo $success_message; ?></span> 
+ <span class="text-danger"><?php if (isset($error_message)) echo $error_message; ?></span> 
+<h1>Event L&ouml;schen</h1>
 <div>
-  <label>
-    <p class="label-txt">Name des Events</p>
-    <input type="text" autocomplete="off" name="name" id="name" required value="<?php if($error) echo $name; ?>" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
+
+<?php
+include_once("connect.php");
+session_start();
+
+$sql = "SELECT * FROM `events`";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  echo '<select name="name">';
+  echo '<option value="">Bitte ausw&auml;hlen</option>';
+  while($row = $result->fetch_assoc()) {
+    echo '<option value="' . $row["name"] . '">' . $row["name"] . '</option>';
+  }
+  echo '</select>';
+  echo "<br />";
+  } else {
+  echo "Es sind leider Keine Events Verfuegbar";
+  }
+?>
+
 <br />
 <br />
   <button type="submit" name="signup">L&ouml;schen</button>

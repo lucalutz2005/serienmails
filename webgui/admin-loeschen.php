@@ -11,7 +11,6 @@ include 'login_test.php';  // Funktioniert
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
 <!-- Jetz wird PHP gestartet -->
 <?php
 include_once("connect.php");
@@ -29,7 +28,7 @@ if (isset($_GET['signup'])) {
 
 	$name_neu = '"' . $name . '"';
 	//echo $name_neu;
-	$sql = "DELETE FROM users WHERE name=" . $name_neu . ";";
+	$sql = "DELETE FROM `admins` WHERE username=" . $name_neu . ";";
 	//echo $sql;
 	if(mysqli_query($conn, $sql)) { 
 	  $success_message = "Es hat funktioniert!";
@@ -46,8 +45,9 @@ if (isset($_GET['signup'])) {
 
 
 
+<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
         <div class="form-group">
-	  <h1>User l&ouml;schen</h1>
+	  <h1>Admin l&ouml;schen</h1>
 	</div>
 
 	<label>
@@ -56,19 +56,19 @@ if (isset($_GET['signup'])) {
 include_once("connect.php");
 session_start();
 
-$sql = "SELECT * FROM `users`";
+$sql = "SELECT * FROM `admins`";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   echo '<select name="name">';
   echo '<option value="">Bitte ausw&auml;hlen</option>';
   while($row = $result->fetch_assoc()) {
-    echo '<option value="' . $row["name"] . '">' . $row["name"] . '</option>';
+    echo '<option value="' . $row["username"] . '">' . $row["username"] . '</option>';
   }
   echo '</select>';
   echo "<br />";
   } else {
-  echo "Es sind leider Keine Users Verfuegbar";
+  echo "Es sind leider Keine Events Verfuegbar";
   }
 ?>
 <br />

@@ -1,3 +1,7 @@
+<?php
+include 'login_test.php';  // Funktioniert
+?>
+
 <html>
 <head>
 <title> Offene Events </title>
@@ -9,7 +13,7 @@
 <body>
 
    <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" name="signupform">
-     	<h1>Eventname Eingeben</h1>
+     	<h1>Eventname eingeben</h1>
 
 	<!--<label>
 	  <label class="label-txt" style="top: -4.3em">Name</label>
@@ -58,7 +62,7 @@ $name  = mysqli_real_escape_string($conn, $_GET['name']);
 						 #echo "Die folgenden Nutzer haben die Mail &uumlber " . $name . "noch nicht gelesen!";
 						 echo '<table  style="margin-left: auto; margin-right: auto; text-align: left;">'; # border = 4;
 						 echo '<colgroup> <col width="150"> <col width="250"> <col width="165"> </colgroup>';
-						 echo '<tr> <a style="color: red"> Die folgenden Nutzer haben die Mail &uumlber ' . $name . ' noch nicht gelesen!</a> </tr>';
+						 echo '<tr> <a style="color: red">Die folgenden Nutzer haben die Mail &uumlber ' . $name . ' noch nicht gelesen!</a> </tr>';
 						 echo "<tr> <td> Name </td> <td> Email </td> <td> Manuel Bestaetigen </td> </tr>";
 						 if ($result->num_rows > 0) {
 						 while($row = $result->fetch_assoc()) {
@@ -70,7 +74,7 @@ $name  = mysqli_real_escape_string($conn, $_GET['name']);
 							 echo $row["user_email"];
 							 echo "</td>";
 							 echo "<td>";
-							 echo "<a href='https://papier.lucalutz.org/bestaetigung.php?hash=" . $row["hash"] . "&signup=''> Als Best&aumltigt eintragen</a>" . "<br>";
+							 echo "<a href='https://papier.lucalutz.org/webgui/bestaetigung.php?hash=" . $row["hash"] . "&signup=''> Als Best&aumltigt eintragen</a>" . "<br>";
 							 echo "</td>";
 							 echo "</tr>";
 		                                 }
@@ -78,6 +82,15 @@ $name  = mysqli_real_escape_string($conn, $_GET['name']);
 							 echo "<br /> <br /> Supper keine offenen Einladungen mehr";
 						 }
 						 echo '</table>';
+						 
+						 
+						 
+						 echo "<br />";
+						 echo "<br />";
+						 echo "<br />";
+						 echo "<br />";
+						 
+						 
 						 $sql = "SELECT SUM(antwort) FROM `einladungen` WHERE event_name = '".$name."';";
 						 //echo $sql;
 						 $count = mysqli_fetch_array(mysqli_query($conn, $sql));
@@ -92,6 +105,67 @@ $name  = mysqli_real_escape_string($conn, $_GET['name']);
 
 							 }
 						 }
+						 echo "<br />";
+						 
+						 $sql = "SELECT * FROM `einladungen` WHERE antwort IS NOT NULL AND antwort != '0' AND event_name = '" . $name . "'";
+			                         $result = $conn->query($sql);
+					
+						 #echo "Die folgenden Nutzer haben die Mail &uumlber " . $name . "noch nicht gelesen!";
+					 echo '<table  style="margin-left: auto; margin-right: auto; text-align: left;" >'; # border = 4; # kein style sondern antribut
+						 echo '<colgroup> <col width="250"> <col width="250"> <col width="700"> </colgroup>';
+						 echo '<tr> <a style="color: red"> Die folgenden Nutzer haben die Mail &uumlber ' . $name . ' gelesen!</a> </tr>';
+						 echo "<tr> <td> Name </td> <td> Email </td> <td> Kommt mit Personen </td> </tr>";
+						 if ($result->num_rows > 0) {
+						 while($row = $result->fetch_assoc()) {
+							 echo "<tr>";
+							 echo "<td>";
+							 echo $row["user_name"];
+							 echo "</td>";
+							 echo "<td>";
+							 echo $row["user_email"];
+							 echo "</td>";
+							 echo "<td>";
+							 echo $row["antwort"];
+							 echo "</td>";
+							 echo "</tr>";
+		                                 }
+						 } else {
+							 echo "<br /> <br /> Keine Eintr&auml;ge vorhanden";
+						 }
+						 echo '</table>';
+
+
+
+						 echo "<br />";
+						 echo "<br />";
+
+                                                 $sql = "SELECT * FROM `einladungen` WHERE antwort IS NOT NULL AND antwort = '0' AND event_name = '" . $name . "'";
+                                                 $result = $conn->query($sql);
+
+                                                 #echo "Die folgenden Nutzer haben die Mail &uumlber " . $name . "noch nicht gelesen!";
+                                         echo '<table  style="margin-left: auto; margin-right: auto; text-align: left;" >'; # border = 4; # kein style sondern antribut
+                                                 echo '<colgroup> <col width="250"> <col width="250"> <col width="700"> </colgroup>';
+                                                 echo '<tr> <a style="color: red"> Die folgenden Nutzer haben die Mail &uumlber ' . $name . ' gelesen aber kommen nicht!</a> </tr>';
+                                                 echo "<tr> <td> Name </td> <td> Email </td> <td> &Auml;ndern </td> </tr>";
+                                                 if ($result->num_rows > 0) {
+                                                 while($row = $result->fetch_assoc()) {
+                                                         echo "<tr>";
+                                                         echo "<td>";
+                                                         echo $row["user_name"];
+                                                         echo "</td>";
+                                                         echo "<td>";
+                                                         echo $row["user_email"];
+                                                         echo "</td>";
+                                                         echo "<td>";
+							 echo "<a href='https://papier.lucalutz.org/webgui/bestaetigung.php?hash=" . $row["hash"] . "&signup=''>&Auml;ndern</a>" . "<br>";
+                                                         echo "</td>";
+                                                         echo "</tr>";
+                                                 }
+                                                 } else {
+                                                         echo "<br /> <br /> Keine Eintr&auml;ge vorhanden";
+                                                 }
+                                                 echo '</table>';
+
 
 ?>
 

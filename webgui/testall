@@ -1,1 +1,36 @@
 # image von http://ftp.uni-kl.de/pub/linux/knoppix-dvd/KNOPPIX_V8.2-2018-05-10-DE.iso
+
+../installation/datenbank.sh
+
+rm -r inhalte/*
+rm -r uploads/*
+#rm -r adressen/*
+
+mv login_test.php login_test1.php
+
+# user anlegen
+wget --no-check-certificate --spider https://papier.lucalutz.org/webgui/user-anlegen.php?name=Guenter+Walter&email=guenter%40walters.de&signup=
+
+sleep 10
+
+# event anlegen
+wget --no-check-certificate --spider https://papier.lucalutz.org/webgui/event-anlegen.php?name=Jufo&inhalt=Kommt+alle+zu+JuFo&signup=
+
+sleep 10
+
+# event exportieren
+wget --no-check-certificate --spider https://papier.lucalutz.org/webgui/event-exportieren.php?name=Jufo&signup= -o download.zip
+
+sleep 10
+
+# event loeschen
+#wget --no-check-certificate --spider https://papier.lucalutz.org/webgui/event-loeschen.php?name=Jufo&signup=
+
+#sleep 10
+
+# user loeschen
+#wget --no-check-certificate --spider https://papier.lucalutz.org/webgui/user-loeschen.php?name=Guenter+Walter&signup=
+
+#sleep 10
+
+mv login_test1.php login_test.php

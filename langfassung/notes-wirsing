@@ -1,0 +1,45 @@
+??? grep undefined /var/www/html/tmp/serienmails.log 
+    Die Software-Quellen Manuell umbrechen, nicht automatisch
+
+Mail an Sonja.Fick@tesionmail.de Projekt 75341, "Serienmails" Fachgebiet aendern?
+
+tex-file durchlesen
+  - offensichtliche Rechtschreibfehler, Gross/kleinschreibung
+  - jeder Satz: Grammatik
+  - Zeichensetzung
+  - jeder Absatz: aufteilen?
+  - Inhaltlich fuer fremde verstaendlich
+  - fehlen /cite?
+
+sicherheit:
+  filename enthaelt "../"
+  wiederspruch in den letzten beiden Items
+  DB mit dem Admin-Passwort verschluesseln
+  Buffer-overflow
+
+-------------------------Ab hier erledigt----------------------
+Schoeneres titelbild, Papierstapel?
+
+Test auf vrtueller Maschine
+  - Zeilenumbruch
+3 Ergebnisse: "php" nur in Einleitung
+in anderes Verzeichnis umziehen: /media/jufo/serienmails/langfassung/code2tex/
+  alle Links aus dem Text umziehen nach "Quellen"
+drucken: /tmp/langfassung-template.pdf
+Zertifikat anzeigen: (getestet auf watt)
+  echo | openssl s_client -connect papier.lucalutz.org.:https 2>/dev/null | openssl x509 -noout -text
+1.3: inter Doodle fehlt \cite
+eine \glqq xyz\grqq{}  ist
+Quellen: die Musterquellen deaktivieren
+Stand der Technik: https://doodle.com/de/online-umfrage-erstellen
+  git
+Quellen:
+  Symantec, Concordia Cohr Whesthausen
+  apache, php, mysql, Transaktion, latex, postfix, Massendrucksache
+csv-Import Vereinsmitglieder: Name, mail, Adresse
+4 Ergebnisdiskussion: ganze Saetze
+2.5 Dokumentation
+  doku nicht wegen wirsing sondern...
+  neuer Absatz: pruefen mit Life-System
+Hochladen: git
+Hochladen: JuFo, Fachgebiet umstellen

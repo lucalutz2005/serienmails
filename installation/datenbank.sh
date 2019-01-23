@@ -1,66 +1,144 @@
+(
+echo '-- phpMyAdmin SQL Dump'
+echo '-- version 4.6.6deb4'
+echo '-- https://www.phpmyadmin.net/'
+echo '--'
+echo '-- Host: localhost:3306'
+echo '-- Erstellungszeit: 10. Jan 2019 um 18:42'
+echo '-- Server-Version: 10.1.37-MariaDB-0+deb9u1'
+echo '-- PHP-Version: 7.0.33-0+deb9u1'
+echo ''
+echo 'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'
+echo 'SET time_zone = "+00:00";'
+echo ''
+echo ''
+echo '/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;'
+echo '/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;'
+echo '/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;'
+echo '/*!40101 SET NAMES utf8mb4 */;'
+echo ''
+echo '--'
+echo '-- Datenbank: `serienmails`'
+echo '--'
+echo ''
+echo '-- --------------------------------------------------------'
+echo ''
+echo '--'
+echo '-- Tabellenstruktur fÃ¼r Tabelle `admins`'
+echo '--'
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00"; 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */; 
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */; 
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */; 
-/*!40101 SET NAMES utf8mb4 */; 
--- 
--- Datenbank: `serienmails` 
--- 
+echo 'DROP User IF EXISTS serienmails;'
+echo 'CREATE USER "serienmails"@"%" IDENTIFIED BY "garnix";'
+echo 'GRANT ALL PRIVILEGES ON *.* TO "serienmails"@"%" WITH GRANT OPTION;'
 
--- -------------------------------------------------------- 
+echo 'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'
+echo 'SET AUTOCOMMIT = 0;'
+echo 'START TRANSACTION;'
+echo 'SET time_zone = "+02:00";'
 
--- 
--- Tabellenstruktur für Tabelle `einladungen` 
--- 
+echo 'DROP   DATABASE IF     EXISTS serienmails;'
+echo 'CREATE DATABASE IF NOT EXISTS serienmails;'
+echo 'USE serienmails;'
 
-CREATE TABLE `einladungen` (
-  `user_email` varchar(100) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
-  `event_name` varchar(100) NOT NULL,
-  `antwort` int(100) DEFAULT NULL,
-  `IP` varchar(100) DEFAULT NULL,
-  `Uhrzeit` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `hash` varchar(100) NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
-  
--- -------------------------------------------------------- 
- 
--- 
--- Tabellenstruktur für Tabelle `events`
--- 
+echo ''
+echo 'CREATE TABLE `admins` ('
+echo '  `id` int(11) NOT NULL,'
+echo '  `username` varchar(100) NOT NULL,'
+echo '  `email` varchar(100) NOT NULL,'
+echo '  `password` varchar(100) NOT NULL'
+echo ') ENGINE=InnoDB DEFAULT CHARSET=latin1;'
+echo ''
+echo '--'
+echo '-- Daten fÃ¼r Tabelle `admins`'
+echo '--'
+echo ''
+echo 'INSERT INTO `admins` (`id`, `username`, `email`, `password`) VALUES'
+echo '(1, "lulu2005", "lucas.handy.1234@gmail.com", "b3a40b790c7a0bd17ec454522621f80e");'
+echo ''
+echo '-- --------------------------------------------------------'
+echo ''
+echo '--'
+echo '-- Tabellenstruktur fÃ¼r Tabelle `einladungen`'
+echo '--'
+echo ''
+echo 'CREATE TABLE `einladungen` ('
+echo '  `user_email` varchar(100) NOT NULL,'
+echo '  `user_name` varchar(100) NOT NULL,'
+echo '  `event_name` varchar(100) NOT NULL,'
+echo '  `antwort` int(100) DEFAULT NULL,'
+echo '  `IP` varchar(100) DEFAULT NULL,'
+echo '  `Uhrzeit` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,'
+echo '  `hash` varchar(100) NOT NULL'
+echo ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
+echo ''
+echo '--'
+echo '-- Tabellenstruktur fÃ¼r Tabelle `events`'
+echo '--'
+echo ''
+echo 'CREATE TABLE `events` ('
+echo '  `name` varchar(59) NOT NULL,'
+echo '  `inhalt_pfad` varchar(59) NOT NULL,'
+echo '  `anhang_pfad` varchar(59) DEFAULT NULL'
+echo ') ENGINE=InnoDB DEFAULT CHARSET=latin1;'
+echo ''
+echo '--'
+echo '-- Daten fÃ¼r Tabelle `events`'
+echo '--'
+echo ''
+echo '-- --------------------------------------------------------'
+echo ''
+echo '--'
+echo '-- Tabellenstruktur fÃ¼r Tabelle `users`'
+echo '--'
+echo ''
+echo 'CREATE TABLE `users` ('
+echo '  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,'
+echo '  `name` char(59) NOT NULL,'
+echo '  `IP` tinytext NOT NULL,'
+echo '  `email` tinytext NOT NULL,'
+echo '  `Adresse1` varchar(100) NOT NULL,'
+echo '  `Adresse2` varchar(100) NOT NULL'
+echo ') ENGINE=MyISAM DEFAULT CHARSET=latin1;'
+echo ''
 
-  CREATE TABLE `events` (
-  `name` varchar(59) NOT NULL,
-  `inhalt_pfad` varchar(59) NOT NULL,
-  `anhang_pfad` varchar(59) DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
-  
--- -------------------------------------------------------- 
--- 
--- Tabellenstruktur für Tabelle `users`
--- 
 
-CREATE TABLE `users` (
-  `name` char(59) NOT NULL,
-  `IP` tinytext NOT NULL,
-  `email` tinytext NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1; -- -- Daten für Tabelle `users` -- 
+echo 'INSERT INTO `users` (`name`, `IP`, `email`, `Adresse1`, `Adresse2`) VALUES ("Luca Lutz", "82.212.26.101", "lucas.handy.1234@gmail.com", "Germany\r\n73463 Westhausen", "Mühlstraße 7/1");'
 
---
--- Indizes der exportierten Tabellen
---
 
---
--- Indizes für die Tabelle `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`name`);
-
---
--- Indizes für die Tabelle `users`
---
-ALTER TABLE `users`
-ADD PRIMARY KEY (`name`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+echo '--'
+echo '-- Indizes der exportierten Tabellen'
+echo '--'
+echo ''
+echo '--'
+echo '-- Indizes fÃ¼r die Tabelle `admins`'
+echo '--'
+echo 'ALTER TABLE `admins`'
+echo '  ADD PRIMARY KEY (`id`);'
+echo ''
+echo '--'
+echo '-- Indizes fÃ¼r die Tabelle `events`'
+echo '--'
+echo 'ALTER TABLE `events`'
+echo '  ADD PRIMARY KEY (`name`);'
+echo ''
+echo '--'
+echo '-- Indizes fÃ¼r die Tabelle `users`'
+echo '--'
+#echo 'ALTER TABLE `users`'
+#echo '  ADD PRIMARY KEY (`name`);'
+echo ''
+echo '--'
+echo '-- AUTO_INCREMENT fÃ¼r exportierte Tabellen'
+echo '--'
+#echo 'ALTER TABLE `users`'
+#echo '  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;'
+echo ''
+echo '--'
+echo '-- AUTO_INCREMENT fÃ¼r Tabelle `admins`'
+echo '--'
+echo 'ALTER TABLE `admins`'
+echo '  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;'
+echo '/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;'
+echo '/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;'
+echo '/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;' 
+) | mysql -h localhost -u serienmails --password="garnix" 

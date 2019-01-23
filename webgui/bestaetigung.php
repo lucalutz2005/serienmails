@@ -1,6 +1,6 @@
 <html>
 <head>
-<title> User anlegen </title>
+<title> Hash per Hand eingeben </title>
 <link rel="stylesheet" href="style/inputs.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -52,8 +52,8 @@ if (isset($_GET['signup'])) {
      <?php echo $success_message; ?>
      <?php echo $error_message; ?>
       <select name="antwort" id="antwort" class="form-control">
- 	 <option value="0">Ich komme</option>
- 	 <option value="1">Ich kann leider nicht kommen</option>
+ 	 <option value="1">Ich komme</option>
+ 	 <option value="0">Ich kann leider nicht kommen</option>
  	 <option value="2">Ich komme mit 1. Person</option>
   	 <option value="3">Ich komme mit 2. Person</option>
   	 <option value="4">Ich komme mit 3. Person</option>
