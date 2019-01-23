@@ -1,8 +1,0 @@
-\select@language {ngerman}
-\contentsline {section}{\numberline {1}Einleitung und Ziel}{1}{section.1}
-\contentsline {section}{\numberline {2}Vorgehensweise, Materialien und Methode}{1}{section.2}
-\contentsline {section}{\numberline {3}Ergebnisse}{1}{section.3}
-\contentsline {section}{\numberline {4}Ergebnisdiskussion}{1}{section.4}
-\contentsline {section}{\numberline {5}Zusammenfassung}{2}{section.5}
-\contentsline {section}{\numberline {6}Danksagung}{2}{section.6}
-\contentsline {section}{\numberline {7}Quellen- und Literaturverzeichnis}{2}{section.7}
